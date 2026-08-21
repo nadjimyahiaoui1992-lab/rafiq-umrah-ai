@@ -1,0 +1,12 @@
+import AppChrome, { BackLink } from "@/components/AppChrome";
+import { trpc } from "@/lib/trpc";
+import { Bot, Send, ShieldCheck } from "lucide-react";
+import { FormEvent, useState } from "react";
+
+export default function Advisor() {
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const ask = trpc.advisor.answer.useMutation({ onSuccess: data => setAnswer(data.answer) });
+  const submit = (event: FormEvent) => { event.preventDefault(); if (question.trim().length >= 4) ask.mutate({ question: question.trim() }); };
+  return <AppChrome><section className="container py-10 sm:py-14"><BackLink href="/" label="العودة إلى الرئيسية" /><div className="mx-auto mt-7 max-w-3xl overflow-hidden rounded-[30px] border border-[#e3dccd] bg-white shadow-[0_18px_45px_rgba(35,59,47,.08)]"><div className="bg-[#064e3b] p-7 text-white"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#d6b878] text-[#173e33]"><Bot size={22} /></span><h1 className="mt-5 font-display text-3xl font-extrabold">اسأل رفيقك الذكي عن العروض</h1><p className="mt-3 max-w-xl text-sm leading-7 text-[#d2e0d9]">يشرح المساعد ما يظهر في العروض النشطة فقط. لا يمكنه تأكيد الحجز أو اختراع تفاصيل أو تقديم فتاوى.</p></div><div className="p-6 sm:p-8"><form onSubmit={submit}><label className="text-sm font-bold text-[#34594d]">سؤالك<input value={question} onChange={event => setQuestion(event.target.value)} maxLength={600} placeholder="مثال: ما الفرق بين العروض المباشرة المتاحة من الجزائر؟" className="mt-3 block w-full rounded-2xl border border-[#dcd6c7] bg-[#fdfcf8] px-4 py-4 text-sm outline-none focus:border-[#0a7257]" /></label><button disabled={ask.isPending || question.trim().length < 4} className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#064e3b] px-5 py-4 text-sm font-extrabold text-white disabled:opacity-60"><Send size={17} />{ask.isPending ? "جارٍ قراءة العروض..." : "اسأل المساعد"}</button></form>{ask.isError && <p className="mt-5 rounded-xl bg-rose-50 p-4 text-sm text-rose-700">تعذر الحصول على إجابة الآن. يمكنك متابعة البحث أو المحاولة لاحقًا.</p>}{answer && <div className="mt-7 whitespace-pre-wrap rounded-[22px] bg-[#edf5ee] p-5 text-sm leading-8 text-[#244b3f]">{answer}</div>}<p className="mt-6 flex gap-2 text-xs leading-6 text-slate-500"><ShieldCheck size={16} className="mt-0.5 shrink-0 text-[#0a7257]" />يقتصر سياق الإجابة على بيانات العرض العامة. تحقق من السعر والتوفر والشروط مباشرة مع الوكالة قبل أي دفع.</p></div></div></section></AppChrome>;
+}

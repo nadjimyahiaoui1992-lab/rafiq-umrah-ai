@@ -7,6 +7,8 @@ import {
   Bot, Building2, ChevronLeft, Compass, Home, MessageCircle, Plane, Search, Sparkles, UserRound, X,
 } from "lucide-react";
 import { ReactNode, useState } from "react";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { startLogin } from "@/const";
 
 const logoUrl = "/manus-storage/rafiq-logo-mark-256_a6625f22.webp";
 const notify = (message: string) => { void import("sonner").then(({ toast }) => toast.info(message)); };
@@ -68,7 +70,7 @@ function Assistant() {
             <div className="rounded-2xl rounded-tr-sm bg-[#e9f3ed] p-4 text-sm leading-7 text-[#264c40]">السلام عليكم. أنا رفيقك الذكي، أساعدك في مقارنة العروض وفهم تفاصيل البرامج وتجهيز رحلتك.</div>
             <p className="mt-5 text-xs font-bold tracking-wide text-[#967436]">اختر سؤالًا سريعًا</p>
             <div className="mt-2 grid gap-2">
-              {prompts.map((prompt) => <button key={prompt} onClick={() => notify("هذه محادثة تجريبية — سيُربط المساعد الذكي لاحقًا.")} className="rounded-xl border border-[#e5dfce] bg-white px-3 py-2.5 text-right text-sm text-[#32554a] transition hover:border-[#d6b878] hover:bg-[#fffaf0]">{prompt}</button>)}
+              {prompts.map((prompt) => <Link key={prompt} href={`/advisor?question=${encodeURIComponent(prompt)}`} onClick={() => setOpen(false)} className="rounded-xl border border-[#e5dfce] bg-white px-3 py-2.5 text-right text-sm text-[#32554a] transition hover:border-[#d6b878] hover:bg-[#fffaf0]">{prompt}</Link>)}
             </div>
             <p className="mt-4 text-[11px] leading-5 text-slate-500">للمسائل الدينية التفصيلية أو الحساسة، يرجى الرجوع إلى المصادر الرسمية أو أهل العلم الموثوقين.</p>
           </aside>
@@ -81,6 +83,7 @@ function Assistant() {
 export default function AppChrome({ children, compact = false }: { children: ReactNode; compact?: boolean }) {
   const [location] = useLocation();
   const [language, setLanguage] = useState("العربية");
+  const { user } = useAuth();
   return (
     <div dir="rtl" className="min-h-screen overflow-x-clip bg-[#fbfaf7] text-[#16231f]">
       <header className="sticky top-0 z-40 border-b border-[#e9e3d4] bg-[#fbfaf7]/95 backdrop-blur-xl">
@@ -92,7 +95,7 @@ export default function AppChrome({ children, compact = false }: { children: Rea
           <div className="flex items-center gap-2">
             <button onClick={() => setLanguage(language === "العربية" ? "Français" : language === "Français" ? "English" : "العربية")} className="hidden rounded-full border border-[#dcd7c8] bg-white px-3 py-2 text-xs font-bold text-[#35544a] sm:block" aria-label="تبديل اللغة">{language} <span className="mr-1 text-[#ad8438]">⌄</span></button>
             <Link href="/agency-growth" className="hidden items-center gap-2 rounded-full bg-[#064e3b] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#0a674f] md:flex"><Building2 size={15} /> وكالتك معنا</Link>
-            <button onClick={() => notify("هذا الحساب جزء من نموذج العرض فقط.")} className="grid h-10 w-10 place-items-center rounded-full bg-[#eef2ec] text-[#285847]" aria-label="الحساب"><UserRound size={18} /></button>
+            {user ? <Link href="/account" className="grid h-10 w-10 place-items-center rounded-full bg-[#e3f0e6] text-[#0a6f54]" aria-label="الحساب"><UserRound size={18} /></Link> : <button onClick={startLogin} className="grid h-10 w-10 place-items-center rounded-full bg-[#eef2ec] text-[#285847]" aria-label="تسجيل الدخول"><UserRound size={18} /></button>}
           </div>
         </div>
       </header>
@@ -111,7 +114,7 @@ function MobileNav({ location }: { location: string }) {
     { href: "/offers", label: "العروض", icon: Search },
     { href: "/planner", label: "AI", icon: Sparkles, special: true },
     { href: "/agencies", label: "الوكالات", icon: Building2 },
-    { href: "/agency-dashboard", label: "حسابي", icon: UserRound },
+    { href: "/account", label: "حسابي", icon: UserRound },
   ];
   return <nav className="fixed inset-x-0 bottom-0 z-40 flex h-[69px] items-end justify-around border-t border-[#e5e0d5] bg-[#fbfaf7]/95 px-1 pb-2 pt-1 backdrop-blur-xl md:hidden" aria-label="تنقل الهاتف">{items.map((item) => { const Icon = item.icon; const active = location === item.href; return <Link key={item.href} href={item.href} className={`flex min-w-[58px] flex-col items-center gap-1 text-[10px] font-bold ${active ? "text-[#087258]" : "text-slate-500"}`}>{item.special ? <span className="-mt-7 grid h-14 w-14 place-items-center rounded-full border-4 border-[#fbfaf7] bg-[#064e3b] text-[#d6b878] shadow-lg"><Icon size={21} /></span> : <Icon size={18} />}<span>{item.label}</span></Link>})}</nav>;
 }
