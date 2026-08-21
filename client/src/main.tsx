@@ -37,7 +37,10 @@ queryClient.getMutationCache().subscribe(event => {
   }
 });
 
-const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? "/api/trpc").replace(/\/$/, "");
+const defaultApiBaseUrl = import.meta.env.PROD
+  ? "https://umrahai-lauhahut.manus.space/api/trpc"
+  : "/api/trpc";
+const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL ?? defaultApiBaseUrl).replace(/\/$/, "");
 
 const trpcClient = trpc.createClient({
   links: [
