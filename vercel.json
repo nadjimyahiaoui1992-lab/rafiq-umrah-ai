@@ -6,7 +6,11 @@
   "installCommand": "pnpm install --frozen-lockfile",
   "rewrites": [
     {
-      "source": "/((?!api(?:/|$)).*)",
+      "source": "/manus-storage/:path*",
+      "destination": "https://umrahai-lauhahut.manus.space/manus-storage/:path*"
+    },
+    {
+      "source": "/((?!api(?:/|$)|manus-storage(?:/|$)).*)",
       "destination": "/index.html"
     }
   ]

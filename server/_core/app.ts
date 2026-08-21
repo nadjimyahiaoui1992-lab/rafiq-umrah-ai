@@ -20,7 +20,8 @@ export function createApp() {
   );
   app.use((req, res, next) => {
     const origin = req.header("Origin");
-    if (origin && allowedOrigins.has(origin)) {
+    const isVercelPreview = /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin ?? "");
+    if (origin && (allowedOrigins.has(origin) || isVercelPreview)) {
       res.setHeader("Access-Control-Allow-Origin", origin);
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
