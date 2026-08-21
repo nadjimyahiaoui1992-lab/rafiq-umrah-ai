@@ -1,0 +1,36 @@
+/** Style reminder — "رحلات من نور": warm ivory surfaces, deep green anchors, sand-gold route accents, generous rhythm, and motion that feels supportive rather than technical. */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --font-display: "Alexandria", "Arial", sans-serif;
+  --font-sans: "IBM Plex Sans Arabic", "Arial", sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}
+
+:root { --background: #fbfaf7; --foreground: #16231f; --card: #ffffff; --card-foreground: #16231f; --popover: #ffffff; --popover-foreground: #16231f; --primary: #064e3b; --primary-foreground: #ffffff; --muted: #f2f3ee; --muted-foreground: #64736d; --border: #e7e2d7; --ring: #d6b878; }
+* { border-color: var(--border); }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--background); color: var(--foreground); font-family: "IBM Plex Sans Arabic", Arial, sans-serif; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:not(:disabled), a[href] { cursor: pointer; }
+button:active, a:active { transform: scale(.98); }
+.container { width: 100%; margin-inline: auto; padding-inline: 1rem; }
+.font-display { font-family: "Alexandria", Arial, sans-serif; }
+.route-divider { height: 1px; background: linear-gradient(90deg, transparent, #d6b878 18%, #d6b878 82%, transparent); }
+.journey-planner::before { content: ""; position: absolute; right: -3.5rem; top: -4.5rem; width: 16rem; height: 12rem; border: 1px solid rgb(214 184 120 / .55); border-radius: 100%; }
+.journey-planner::after { content: ""; position: absolute; left: 8%; bottom: 1.25rem; width: 38%; height: 1px; background: linear-gradient(90deg, transparent, #d6b878 12%, #d6b878 88%, transparent); box-shadow: 0 0 0 0 transparent; }
+@media (min-width: 640px) { .container { padding-inline: 1.5rem; } }
+@media (min-width: 1024px) { .container { max-width: 1280px; padding-inline: 2rem; } }
+@media (prefers-reduced-motion: no-preference) { .journey-enter { animation: journey-enter .45s cubic-bezier(.23,1,.32,1) both; } @keyframes journey-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } } }

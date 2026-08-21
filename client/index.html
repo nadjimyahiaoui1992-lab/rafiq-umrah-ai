@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="description" content="منصة ذكية تساعدك على مقارنة عروض العمرة واختيار البرنامج الأنسب لميزانيتك واحتياجاتك." />
+    <meta name="theme-color" content="#064E3B" />
+    <title>رفيق المعتمر AI | اكتشف أفضل عروض العمرة في الجزائر</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="/manus-storage/rafiq-hero-makkah-960_e5731638.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/manus-storage/rafiq-hero-makkah-1920_6b7b1569.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" /></noscript>
+    <style>
+      #critical-hero{position:relative;isolation:isolate;display:grid;min-height:660px;overflow:hidden;background:#063f32;color:#fff;font-family:"IBM Plex Sans Arabic",Arial,sans-serif}
+      #critical-hero img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center}
+      #critical-hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(3,43,33,.38),rgba(3,43,33,.89) 77%)}
+      #critical-hero .inner{align-self:center;padding:96px 24px 60px;max-width:620px}
+      #critical-hero .mark{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(235,211,139,.65);border-radius:999px;background:rgba(3,43,33,.36);padding:8px 12px;color:#f5dfa0;font-size:12px;font-weight:700}
+      #critical-hero h1{margin:18px 0 16px;font-family:Alexandria,"IBM Plex Sans Arabic",Arial,sans-serif;font-size:clamp(42px,12vw,74px);line-height:1.15;font-weight:800;letter-spacing:-.04em}
+      #critical-hero h1 span{color:#ead290}
+      #critical-hero p{max-width:520px;margin:0;color:#edf5ef;font-size:16px;line-height:2}
+      #critical-hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+      #critical-hero .button{display:inline-block;border:1px solid rgba(255,255,255,.55);border-radius:16px;padding:14px 18px;font-size:14px;font-weight:700}
+      #critical-hero .button.primary{border-color:#d6b878;background:#d6b878;color:#173d32}
+      html[data-app-ready="true"] #critical-hero{display:none}
+      @media (min-width:768px){#critical-hero{min-height:625px}#critical-hero:before{background:linear-gradient(90deg,rgba(3,43,33,.96),rgba(3,43,33,.72) 45%,rgba(3,25,19,.2))}#critical-hero .inner{padding:100px max(32px,calc((100vw - 1216px)/2));}}
+    </style>
+  </head>
+  <body>
+    <section id="critical-hero" aria-label="رفيق المعتمر AI">
+      <picture><source media="(max-width: 767px)" srcset="/manus-storage/rafiq-hero-makkah-960_e5731638.webp" /><img src="/manus-storage/rafiq-hero-makkah-1920_6b7b1569.webp" width="1920" height="1080" alt="" fetchpriority="high" /></picture>
+      <div class="inner"><span class="mark">اختيار أوضح لرحلة العمر</span><h1>عمرتك<br /><span>تبدأ من هنا</span></h1><p>دع الذكاء الاصطناعي يساعدك في العثور على العرض الأنسب لميزانيتك واحتياجاتك، خطوة بخطوة وبلا تعقيد.</p><div class="actions"><span class="button primary">اكتشف عمرتي بالذكاء الاصطناعي</span><span class="button">استكشف عروض العمرة</span></div></div>
+    </section>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.addEventListener("load", function () {
+        var loadAnalytics = function () {
+          var script = document.createElement("script");
+          script.defer = true;
+          script.src = "%VITE_ANALYTICS_ENDPOINT%/umami";
+          script.dataset.websiteId = "%VITE_ANALYTICS_WEBSITE_ID%";
+          document.head.appendChild(script);
+        };
+        window.setTimeout(loadAnalytics, 6500);
+      });
+    </script>
+  </body>
+</html>
