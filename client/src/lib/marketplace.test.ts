@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MarketplaceOffer, scoreOffer } from "./marketplace";
+import { MarketplaceOffer, publishedSourceOffers, scoreOffer } from "./marketplace";
 
 const offer: MarketplaceOffer = {
   id: "offer-1", title: "عرض منظم", summary: null, priceDzd: "220000", departureWilaya: "الجزائر",
@@ -8,6 +8,19 @@ const offer: MarketplaceOffer = {
   flightType: "direct", transportIncluded: true, mealsIncluded: false, seatsAvailable: null,
   priceUpdatedAt: new Date(), isFeatured: false, agencyName: "وكالة اختبار", agencySlug: "test-agency", agencyVerification: "verified",
 };
+
+describe("publishedSourceOffers", () => {
+  it("keeps every imported source offer traceable", () => {
+    expect(publishedSourceOffers.length).toBeGreaterThan(0);
+    for (const sourceOffer of publishedSourceOffers) {
+      expect(sourceOffer.sourceUrl).toMatch(/^https:\/\//);
+      expect(sourceOffer.sourceName.length).toBeGreaterThan(0);
+      expect(sourceOffer.checkedAt).toMatch(/^2026-08-21$/);
+      expect(sourceOffer.priceDzd).toBeGreaterThan(0);
+      expect(sourceOffer.departureWilaya.length).toBeGreaterThan(0);
+    }
+  });
+});
 
 describe("scoreOffer", () => {
   it("prioritizes a verified offer that matches budget, wilaya, duration, and flight", () => {
