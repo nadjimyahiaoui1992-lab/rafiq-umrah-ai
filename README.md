@@ -42,6 +42,10 @@ pnpm build
 pnpm start
 ```
 
+## النشر على Vercel
+
+يتضمن المشروع ملف `vercel.json` مهيأ لتطبيق Vite ثابت. عند استيراد مستودع GitHub في Vercel، سيُشغّل البناء `pnpm run build:vercel` وينشر مجلد `dist/public` مع إعادة توجيه مسارات التطبيق إلى `index.html`.
+
 ## بنية المشروع
 
 ```text
