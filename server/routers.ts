@@ -1,10 +1,10 @@
 import { COOKIE_NAME } from "@shared/const";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { getSessionCookieOptions } from "./_core/cookies";
-import { answerMarketplaceQuestion } from "./advisor";
-import { systemRouter } from "./_core/systemRouter";
-import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
+import { getSessionCookieOptions } from "./_core/cookies.js";
+import { answerMarketplaceQuestion } from "./advisor.js";
+import { systemRouter } from "./_core/systemRouter.js";
+import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc.js";
 import {
   archiveAgencyOffer,
   createAgencyOffer,
@@ -25,7 +25,7 @@ import {
   setAgencyVerification,
   toggleFavorite,
   trackOfferEvent,
-} from "./marketplace";
+} from "./marketplace.js";
 
 const phoneSchema = z.string().regex(/^\+213[5-7]\d{8}$/, "أدخل رقمًا جزائريًا صالحًا بصيغة +213");
 

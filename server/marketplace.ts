@@ -10,8 +10,8 @@ import {
   profiles,
   umrahRequests,
   users,
-} from "../drizzle/schema";
-import { getDb, getUserByOpenId } from "./db";
+} from "../drizzle/schema.js";
+import { getDb, getUserByOpenId } from "./db.js";
 
 export const activeOfferWhere = () => and(
   eq(offers.status, "active"),

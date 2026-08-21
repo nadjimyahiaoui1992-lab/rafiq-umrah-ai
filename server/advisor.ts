@@ -1,5 +1,5 @@
-import { invokeLLM, listLLMModels } from "./_core/llm";
-import { listPublicOffers } from "./marketplace";
+import { invokeLLM, listLLMModels } from "./_core/llm.js";
+import { listPublicOffers } from "./marketplace.js";
 
 export async function answerMarketplaceQuestion(question: string) {
   const offers = await listPublicOffers({ limit: 8 });
